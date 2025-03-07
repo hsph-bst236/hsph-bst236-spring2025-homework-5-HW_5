@@ -1,0 +1,30 @@
+# python
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+*.pyw
+*.pyz
+
+# pytest
+.pytest_cache
+.DS_Store
+
+# venv
+venv/
+
+# latex
+# LaTeX
+*.aux
+*.log
+*.out
+*.synctex.gz
+*.fls
+*.fdb_latexmk
+*.bbl
+*.blg
+*.toc
+*.lof
+*.lot
+*.dvi
+*.tex

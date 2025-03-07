@@ -1,0 +1,40 @@
+name: Test Problem 1
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install pytest pytest-timeout
+        pip install -r requirements.txt
+    - name: Test with pytest
+      env:
+        PYTHONPATH: ${{ github.workspace }}:${{ github.workspace }}/src
+      run: |
+        echo "Running tests for Problem 1..."
+        # Run pytest and capture output
+        OUTPUT=$(pytest .github/test/test_problem1.py -v -s)
+        EXIT_CODE=$?
+        
+        # Display the full test output
+        echo "$OUTPUT"
+        
+        # Extract and highlight the result summary
+        echo "::group::Result and Timing Summary"
+        echo "$OUTPUT" | grep -A 3 "=== RESULT SUMMARY ===" || echo "No result summary found"
+        echo "::endgroup::"
+        
+        # Return the original exit code from pytest
+        exit $EXIT_CODE  
