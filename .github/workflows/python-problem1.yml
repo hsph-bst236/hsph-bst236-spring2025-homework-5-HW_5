@@ -2,6 +2,14 @@ name: Test Problem 1
 
 on:
   workflow_dispatch:
+  push:
+    branches: [ main ]
+    paths:
+      - 'problem1.py'
+  pull_request:
+    branches: [ main ]
+    paths:
+      - 'problem1.py'
 
 jobs:
   build:
